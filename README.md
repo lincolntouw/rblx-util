@@ -8,6 +8,8 @@ Any documentation for these modules are posted on the Roblox DevForum.
 
 *QuickEvent docs*: 
 
+*BetterInterface docs*: 
+
 *EZSave docs*:  
 
 *Persistance docs*:  
