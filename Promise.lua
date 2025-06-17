@@ -5,7 +5,12 @@
 	Created by Lincoln Touw
 	V1.0 6/10/2025		  	 			
 		
-	--- LJPackageManager Information: ---	 
+	---------------------
+	
+	## LJPM created by Lincoln Touw 6/03/2025	
+	## https://lincolntouw.github.io/ljpm-rbx			
+	
+	--- LJPackageManager Information: --- 
 	<PackageInfo>
 		<ModuleName>Promise</ModuleName>	 
 		<ModuleAuthor>Lincoln Touw</ModuleAuthor>	 
