@@ -46,9 +46,9 @@ local validTypes = {
 	Error = { {'Message', ''}, {'Code', 0}, {'Trace', ''}, {'Context', {}}, };	 			
 	TypeError = { Base = 'Error',	{'Expected', ''}, {'Got', ''}, }; 		
 	NilError = { Base = 'Error',	{'Variable', ''}, };
-	DependencyError = { Base = 'Error',	{'Missing', ''}, }; 
-	PermissionError = { Base = 'Error',	{'Resource', ''}, {'ExpectedLevel', 1}, {'GotLevel', 0}, };
-	NetworkError = { Base = 'Error',	{'Expected', Enum.RunContext.Server}, {'Got', Enum.RunContext.Client}, };	 
+	DependencyError = { Base = 'Error', {'Missing', ''}, }; 
+	PermissionError = { Base = 'Error', {'Resource', ''}, {'ExpectedLevel', 1}, {'GotLevel', 0}, };
+	NetworkError = { Base = 'Error', {'Expected', Enum.RunContext.Server}, {'Got', Enum.RunContext.Client}, };	 
 	FormatError = { Base = 'Error', };			
 	ConcurrencyError = { Base = 'Error', };
 	ParseError = { Base = 'Error', };
@@ -61,7 +61,7 @@ local validTypes = {
 -- # Object handling
 local WritesLocked = false;			
 local Errors = setmetatable({}, { 
-	--__newindex = function(table: {},	index: string, value: any): any
+	--__newindex = function(table: {},  index: string, value: any): any
 	--	if WritesLocked then warn(`Can't access {index}`); end;
 	--	table[index] = value;
 	--end,	
@@ -88,7 +88,7 @@ function Errors.class(ErrorName: string, Base: Error & {Base: string}): Error
 		local __meta = {   
 			__message = `{ErrorName or Context.Type or 'Error'}{ 
 			if typeof(Message) == "string" then `: {Message}` else ''}{
-			if typeof(Code) == "number" then	` ({Code})` else ''}`,		 	
+			if typeof(Code) == "number" then ` ({Code})` else ''}`,		 	
 		};		   
 		task.spawn(function(): () if Context.Except then warn(__meta.__message); else error(__meta.__message, 0); end; end); 	
 		setmetatable(Context, __meta); 	
@@ -137,7 +137,7 @@ function Errors.class(ErrorName: string, Base: Error & {Base: string}): Error
 end;
 
 -- # Initiate pre-constructed classes 		
-for Type: string,	Contents: (Error?) & {Base: string} in validTypes do
+for Type: string, Contents: (Error?) & {Base: string} in validTypes do
 	Errors.class(Type, Contents);
 end;	    			
 			 
@@ -169,7 +169,7 @@ end;
 function Errors.list(): {[string]: Error} 		
 	local list: {[string]: Error?} = {};
 	for Index: string, Value: any? in Errors do
-		if typeof(Value) == "table" and (getmetatable(Value)or{}).__identifier then		 
+		if typeof(Value) == "table" and (getmetatable(Value) or  {}).__identifier then		 
 			list[Index] = Value;			
 		end;	 
 	end;	
