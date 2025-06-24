@@ -1,11 +1,13 @@
-type Region = {
+export type Region = {
 	Min: Vector3,
-	Max: Vector3	
+	Max: Vector3, 		
+	new: (Min: Vector3, Max: Vector3) -> Region,		 
+	within: (self: Region, Target: Vector3) -> boolean,
 };		
 local IsBetween = function(value: number, value1: number?, value2: number): boolean? 	
 	return value >= value1 and value <= value2; end; 	
 local Region: Region = {};
-Region.__index = Region;
+Region.__index = Region; 		
 Region.new = function(Min: Vector3, Max: Vector3): Region	
 	return setmetatable({
 		Min = Min,
